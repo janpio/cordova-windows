@@ -28,9 +28,13 @@ steps:
 
 - script: |
     SET MSBUILDDIR
-    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin"
+    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.5\Bin"
     SET MSBUILDDIR
   displayName: 'set ENV var'
+  
+- script: |
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.5\Bin" -version -nologo
+  displayName: 'test msbuild'
 
 - script: |
     npm test
