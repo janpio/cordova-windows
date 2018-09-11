@@ -1,0 +1,44 @@
+# https://aka.ms/yaml
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '6.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'npm install'
+
+- script: |
+    node --version
+    npm --version
+  displayName: 'version: node + npm'
+
+- script: dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0" 
+  displayName: 'slowly but surely find msbuild'
+
+- script: |
+    msbuild -version -nologo
+    where msbuild
+    IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -products * -all"
+    IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -all"
+    IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -legacy"
+  displayName: 'version + path: msbuild'
+
+- script: |
+    SET MSBUILDDIR
+    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin"
+    SET MSBUILDDIR
+  displayName: 'set ENV var'
+  
+- script: |
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe" -version -nologo
+  displayName: 'test msbuild'
+
+- script: |
+    npm test
+  displayName: 'npm test'
