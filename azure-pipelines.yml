@@ -18,7 +18,7 @@ steps:
     npm --version
   displayName: 'version: node + npm'
 
-- script: dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild" 
+- script: dir "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0" 
   displayName: 'slowly but surely find msbuild'
 
 - script: |
@@ -31,12 +31,12 @@ steps:
 
 - script: |
     SET MSBUILDDIR
-    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.5\Bin"
+    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin"
     SET MSBUILDDIR
   displayName: 'set ENV var'
   
 - script: |
-    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.5\Bin" -version -nologo
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin" -version -nologo
   displayName: 'test msbuild'
 
 - script: |
