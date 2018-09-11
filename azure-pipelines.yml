@@ -26,8 +26,11 @@ steps:
     IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -legacy"
   displayName: 'version + path: msbuild'
 
-- script: SET VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise"
-  displayName: 'set VSINSTALLDIR'
+- script: |
+    SET MSBUILDDIR
+    SET MSBUILDDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin"
+    SET MSBUILDDIR
+  displayName: 'set ENV var'
 
 - script: |
     npm test
