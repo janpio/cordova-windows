@@ -16,12 +16,15 @@ steps:
 - script: |
     node --version
     npm --version
+  displayName: 'version: node + npm'
+
+- script: |
     msbuild -version -nologo
     where msbuild
     IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -products * -all"
     IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -all"
     IF NOT EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ( echo "no vswhere" ) ELSE "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -property installationPath -legacy"
-  displayName: 'output relevant versions'
+  displayName: 'version + path: msbuild'
 
 - script: |
     npm test
