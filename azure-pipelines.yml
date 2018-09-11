@@ -36,7 +36,7 @@ steps:
   displayName: 'set ENV var'
   
 - script: |
-    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin" -version -nologo
+    "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe" -version -nologo
   displayName: 'test msbuild'
 
 - script: |
